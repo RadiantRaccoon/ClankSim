@@ -14,7 +14,7 @@ import numpy as np
 # cards that can never affect clank can be put into the clankless category
 # but the code should not break if the cards are added anyway
 DECK = {'sneak': 5, 'evasion': 2, 'loot and scoot': 3, 'clankless': 17} 
-MAX_CLANK = 12 # counted 13 clank before heartbeat started skipping on one of hypno's runs
+MAX_CLANK = 20 
 QUICKDRAW_TIME = 5            # how long it takes to process a card via quickdraw (mostly irrelevant)
 PICKUP_TIME = 0 # how many seconds until artifact is picked up (expected)
 SHRIEKER_AVERAGE = 0.25 # expected number of shriekers hit every 30 seconds
@@ -65,7 +65,7 @@ class DeckedOutSimulator:
         self.time = 0
         self.clank = 0
         self.clank_block = 0
-        self.last_stumble = 0
+        self.last_stumble = -60 # stumbles are added at minute 1,3,5 etc
         self.shrieker_average = SHRIEKER_AVERAGE
 
         for card in self.deck:
